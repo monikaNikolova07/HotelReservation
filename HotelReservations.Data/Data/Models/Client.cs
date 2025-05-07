@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace HotelReservation.Data.Models
 {
     public class Client
@@ -15,10 +14,10 @@ namespace HotelReservation.Data.Models
         [Required]
         public string Name { get; set; }
 
-        [Required]
+        [EmailAddress(ErrorMessage = "Nevaliden email adress!")]
         public string Email { get; set; }
 
-        [Required]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();

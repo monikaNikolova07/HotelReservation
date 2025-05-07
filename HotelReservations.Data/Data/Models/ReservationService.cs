@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -7,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace HotelReservation.Data.Models
 {
+    [PrimaryKey(nameof(ReservationId), nameof(ServiceId))]
     public class ReservationService
     {
+
+
         [ForeignKey(nameof(ReservationId))]
         public Reservation Reservation { get; set; }
         public int ReservationId { get; set; }
