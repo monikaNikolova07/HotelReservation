@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "RoomNumber": "101A",
+    "Capacity": 2,
+    "PricePerNight": 99.99,
+    "HotelId": 1
+  },
+
+  {
+    "Id": 2,
+    "RoomNumber": "202B",
+    "Capacity": 4,
+    "PricePerNight": 150.00,
+    "HotelId": 2
+  },
+
+  {
+    "Id": 3,
+    "RoomNumber": "303C",
+    "Capacity": 1,
+    "PricePerNight": 75.50,
+    "HotelId": 3
+  }
+]
+

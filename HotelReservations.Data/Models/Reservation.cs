@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelReservation.Data.Models
+namespace HotelReservations.Data.Models
 {
     public class Reservation
     {
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(Client))]
+        [ForeignKey(nameof(ClientId))]
         public int ClientId { get; set; }
         public Client Client { get; set; }
 

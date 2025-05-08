@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelReservation.Data.Models
+namespace HotelReservations.Data.Models
 {
-    public class Hotel
+    public class Service
     {
         [Key]
         public int Id { get; set; }
@@ -16,11 +16,8 @@ namespace HotelReservation.Data.Models
         public string Name { get; set; }
 
         [Required]
-        public string Address { get; set; }
+        public decimal Price { get; set; }
 
-        [Required]
-        public string City { get; set; }
-
-        public ICollection<Room> Rooms { get; set; } = new List<Room>();
+        public ICollection<ReservationService> ReservationServices { get; set; } = new List<ReservationService>();
     }
 }

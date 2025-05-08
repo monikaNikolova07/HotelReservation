@@ -1,5 +1,5 @@
-﻿using HotelReservation.Data;
-using HotelReservation.Data.Models;
+﻿using HotelReservations.Data;
+using HotelReservations.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,7 +1,5 @@
-﻿
-using HotelReservation.Core;
-using HotelReservation.Data;
-using HotelReservation.Data.Models;
+﻿using HotelReservation.Core;
+using HotelReservations.Data;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -109,5 +107,6 @@ namespace HotelReservation
                         break;
                 }
             }
+        }
     } 
 }

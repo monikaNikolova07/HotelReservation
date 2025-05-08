@@ -7,13 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelReservation.Data.Models
+namespace HotelReservations.Data.Models
 {
     [PrimaryKey(nameof(ReservationId), nameof(ServiceId))]
     public class ReservationService
     {
-
-
         [ForeignKey(nameof(ReservationId))]
         public Reservation Reservation { get; set; }
         public int ReservationId { get; set; }

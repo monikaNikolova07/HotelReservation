@@ -1,19 +1,21 @@
-﻿using HotelReservation.Data.Models;
+﻿using HotelReservations.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace HotelReservations.Data.Data.Configurations
+namespace HotelReservations.Data.Configurations
 {
     public class RoomConfiguration : IEntityTypeConfiguration<Room>
     {
         public void Configure(EntityTypeBuilder<Room> builder)
         {
-            List<Room> rooms = new List<Room>();
+            var json = File.ReadAllText("../HotelReservations.Data/Data/room.json");
+            var rooms = JsonSerializer.Deserialize<Room[]>(json);
             builder.HasData(rooms);
         }
     }

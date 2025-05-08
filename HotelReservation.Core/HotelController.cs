@@ -1,10 +1,5 @@
-﻿using HotelReservation.Data;
-using HotelReservation.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HotelReservations.Data;
+using HotelReservations.Data.Models;
 
 namespace HotelReservation.Core
 {

@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace HotelReservations.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationHotelReservationDB : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -128,6 +130,56 @@ namespace HotelReservations.Data.Migrations
                         principalTable: "Services",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Clients",
+                columns: new[] { "Id", "Email", "Name", "PhoneNumber" },
+                values: new object[,]
+                {
+                    { 1, "alice.johnson@example.com", "Alice Johnson", "+359881234567" },
+                    { 2, "peter.d@example.com", "Peter Dimitrov", "+359888765432" },
+                    { 3, "maria.g@domain.bg", "Maria Georgieva", "+359879999999" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rooms",
+                columns: new[] { "Id", "Capacity", "HotelId", "PricePerNight", "RoomNumber" },
+                values: new object[,]
+                {
+                    { 1, 2, 1, 99.99m, "101A" },
+                    { 2, 4, 2, 150.00m, "202B" },
+                    { 3, 1, 3, 75.50m, "303C" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Services",
+                columns: new[] { "Id", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, "1", 2m },
+                    { 2, "2", 1m },
+                    { 3, "3", 3m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Reservations",
+                columns: new[] { "Id", "CheckInDate", "CheckOutDate", "ClientId", "RoomId", "TotalPrice" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2025, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, 200m },
+                    { 2, new DateTime(2025, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 100m },
+                    { 3, new DateTime(2025, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2025, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 3, 300m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ReservationServices",
+                columns: new[] { "ReservationId", "ServiceId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 2 },
+                    { 3, 3 }
                 });
 
             migrationBuilder.CreateIndex(

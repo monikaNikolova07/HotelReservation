@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelReservation.Data.Models
+namespace HotelReservations.Data.Models
 {
     public class Room
     {
