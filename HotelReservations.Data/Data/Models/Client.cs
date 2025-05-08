@@ -14,7 +14,7 @@ namespace HotelReservation.Data.Models
         [Required]
         public string Name { get; set; }
 
-        [EmailAddress(ErrorMessage = "Nevaliden email adress!")]
+        [EmailAddress(ErrorMessage = "Невалиден имейл!")]
         public string Email { get; set; }
 
         [Phone]

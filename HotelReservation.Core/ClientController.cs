@@ -17,16 +17,18 @@ namespace HotelReservation.Core
             
         }
 
-        public void AddClient(string name, string email, string phone)
+        public void AddClient(int id, string name, string email, string phone)
         {
-            var client = new Client { Name = name, Email = email, PhoneNumber = phone };
+            var client = new Client { Id = id, Name = name, Email = email, PhoneNumber = phone };
             _context.Clients.Add(client);
             _context.SaveChanges();
         }
 
+        /*
         public IEnumerable<Client> GetAllClients()
         {
             return _context.Clients.ToList();
         }
+        */
     }
 }

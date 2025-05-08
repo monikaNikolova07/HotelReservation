@@ -41,6 +41,9 @@ namespace HotelReservation.Core
             _context.SaveChanges();
         }
 
+        
+
+        /*
         public IEnumerable<Reservation> GetClientReservations(int clientId)
         {
             return _context.Reservations
@@ -49,5 +52,6 @@ namespace HotelReservation.Core
                 .Where(r => r.ClientId == clientId)
                 .ToList();
         }
+        */
     }
 }

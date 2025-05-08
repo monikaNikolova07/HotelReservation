@@ -17,16 +17,19 @@ namespace HotelReservation.Core
             
         }
 
+        /*
         public IEnumerable<Hotel> GetAllHotels()
         {
             return _context.Hotels.ToList();
         }
+        */
 
-        public void AddHotel(string name, string address, string city)
+        public void AddHotel(int id, string name, string address, string city)
         {
-            var hotel = new Hotel { Name = name, Address = address, City = city };
+            var hotel = new Hotel {Id = id, Name = name, Address = address, City = city };
             _context.Hotels.Add(hotel);
             _context.SaveChanges();
         }
+
     }
 }
