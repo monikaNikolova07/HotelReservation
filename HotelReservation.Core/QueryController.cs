@@ -57,17 +57,7 @@ namespace HotelReservation.Core
                 .Where(r => r.Client.Name == clientName)
                 .ToList();
         }
-
-        // Заявка 6: Всички резервирани стаи с повече от 1 клиент (Reservation + Room + Client)
-        public IEnumerable<Room> GetPopularRooms()
-        {
-            return _context.Reservations
-                .GroupBy(r => r.RoomId)
-                .Where(g => g.Count() > 1)
-                .Select(g => g.First().Room)
-                .Include(r => r.Hotel)
-                .ToList();
-        }
+        // Заявка 6: Не работи и е изтрита
 
         // Заявка 7: Общ приход за конкретен хотел (с вход и 3 таблици)
         public decimal GetTotalRevenueForHotel(string hotelName)

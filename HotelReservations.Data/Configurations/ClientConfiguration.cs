@@ -14,7 +14,7 @@ namespace HotelReservations.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Client> builder)
         {
-            var json = File.ReadAllText("../HotelReservations.Data/Data/client.json");
+            var json = File.ReadAllText("../../../../HotelReservations.Data/Data/client.json");
             var clients = JsonSerializer.Deserialize<Client[]>(json);
             builder.HasData(clients);
         }

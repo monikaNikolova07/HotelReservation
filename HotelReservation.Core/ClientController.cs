@@ -24,11 +24,6 @@ namespace HotelReservation.Core
             _context.SaveChanges();
         }
 
-        /*
-        public IEnumerable<Client> GetAllClients()
-        {
-            return _context.Clients.ToList();
-        }
-        */
+       
     }
 }

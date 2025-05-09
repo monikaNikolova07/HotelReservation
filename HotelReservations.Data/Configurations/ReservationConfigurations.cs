@@ -1,12 +1,7 @@
 ﻿using HotelReservations.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+
 
 namespace HotelReservations.Data.Configurations
 {
@@ -14,7 +9,7 @@ namespace HotelReservations.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Reservation> builder)
         {
-            var lines = File.ReadAllLines("../HotelReservations.Data/Data/reservation.txt");
+            var lines = File.ReadAllLines("../../../../HotelReservations.Data/Data/reservation.txt");
 
             List<Reservation> reservations = [];
 

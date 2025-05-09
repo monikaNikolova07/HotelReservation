@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelReservations.Data.Migrations
 {
     [DbContext(typeof(HotelReservationDBContext))]
-    [Migration("20250508115452_InitialMigration")]
+    [Migration("20250509051858_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -96,6 +96,29 @@ namespace HotelReservations.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Hotels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "ул. Централна 1",
+                            City = "Казанлък",
+                            Name = "Хотел Роза"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "бул. България 42",
+                            City = "Банско",
+                            Name = "Гранд Пирин"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "ул. Морска 7",
+                            City = "Варна",
+                            Name = "Синя вила"
+                        });
                 });
 
             modelBuilder.Entity("HotelReservations.Data.Models.Reservation", b =>

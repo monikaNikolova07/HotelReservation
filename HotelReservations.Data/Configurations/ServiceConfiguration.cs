@@ -13,7 +13,7 @@ namespace HotelReservations.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Service> builder)
         {
-            var lines = File.ReadAllLines("../HotelReservations.Data/Data/reservation.txt");
+            var lines = File.ReadAllLines("../../../../HotelReservations.Data/Data/reservation.txt");
 
             List<Service> services = [];
 

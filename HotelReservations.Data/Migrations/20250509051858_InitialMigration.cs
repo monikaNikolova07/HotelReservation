@@ -143,13 +143,13 @@ namespace HotelReservations.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Rooms",
-                columns: new[] { "Id", "Capacity", "HotelId", "PricePerNight", "RoomNumber" },
+                table: "Hotels",
+                columns: new[] { "Id", "Address", "City", "Name" },
                 values: new object[,]
                 {
-                    { 1, 2, 1, 99.99m, "101A" },
-                    { 2, 4, 2, 150.00m, "202B" },
-                    { 3, 1, 3, 75.50m, "303C" }
+                    { 1, "ул. Централна 1", "Казанлък", "Хотел Роза" },
+                    { 2, "бул. България 42", "Банско", "Гранд Пирин" },
+                    { 3, "ул. Морска 7", "Варна", "Синя вила" }
                 });
 
             migrationBuilder.InsertData(
@@ -160,6 +160,16 @@ namespace HotelReservations.Data.Migrations
                     { 1, "1", 2m },
                     { 2, "2", 1m },
                     { 3, "3", 3m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rooms",
+                columns: new[] { "Id", "Capacity", "HotelId", "PricePerNight", "RoomNumber" },
+                values: new object[,]
+                {
+                    { 1, 2, 1, 99.99m, "101A" },
+                    { 2, 4, 2, 150.00m, "202B" },
+                    { 3, 1, 3, 75.50m, "303C" }
                 });
 
             migrationBuilder.InsertData(

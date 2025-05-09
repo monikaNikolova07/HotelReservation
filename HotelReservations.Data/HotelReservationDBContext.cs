@@ -36,7 +36,7 @@ namespace HotelReservations.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-TDK4AHJ\\SQLEXPRESS;Initial Catalog=master;Integrated Security=True;Trust Server Certificate=True");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-TDK4AHJ\\SQLEXPRESS;Database=HotelReservation;Integrated Security=True;Trust Server Certificate=True");
         }
     }
 }
