@@ -14,10 +14,10 @@ namespace HotelReservation.Core
             _context = context;
         }
 
-        public void MakeReservation(int clientId, int roomId, DateTime checkIn, DateTime checkOut)
+        public bool MakeReservation(int clientId, int roomId, DateTime checkIn, DateTime checkOut)
         {
             var room = _context.Rooms.Find(roomId);
-            if (room == null) return;
+            if (room == null) ;
 
             var totalNights = (checkOut - checkIn).Days;
             var totalPrice = room.PricePerNight * totalNights;
@@ -32,7 +32,7 @@ namespace HotelReservation.Core
             };
 
             _context.Reservations.Add(reservation);
-            _context.SaveChanges();
+            return _context.SaveChanges() == 1;
         }
 
         public List<Reservation> GetAllReservations()

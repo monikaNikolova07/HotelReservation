@@ -17,7 +17,7 @@ namespace HotelReservation.Core
             _context = context;
         }
 
-        public void AddRoom(int hotelId, string roomNumber, int capacity, decimal price)
+        public bool AddRoom(int hotelId, string roomNumber, int capacity, decimal price)
         {
             var room = new Room
             {
@@ -27,10 +27,10 @@ namespace HotelReservation.Core
                 PricePerNight = price
             };
             _context.Rooms.Add(room);
-            _context.SaveChanges();
+            return _context.SaveChanges() == 1;
         }
 
-        public void UpdateRoom(int roomId, string roomNumber, int capacity, decimal price)
+        public bool UpdateRoom(int roomId, string roomNumber, int capacity, decimal price)
         {
             var room = _context.Rooms.FirstOrDefault(r => r.Id == roomId);
             if (room != null)
@@ -39,7 +39,7 @@ namespace HotelReservation.Core
                 room.Capacity = capacity;
                 room.PricePerNight = price;
 
-                _context.SaveChanges();
+                return _context.SaveChanges() == 1;
             }
             else
             {
@@ -47,13 +47,13 @@ namespace HotelReservation.Core
             }
         }
 
-        public void DeleteRoom(int roomId)
+        public bool DeleteRoom(int roomId)
         {
             var room = _context.Rooms.FirstOrDefault(r => r.Id == roomId);
             if (room != null)
             {
                 _context.Rooms.Remove(room);
-                _context.SaveChanges();
+                return _context.SaveChanges() == 1;
             }
             else
             {

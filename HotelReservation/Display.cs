@@ -4,6 +4,7 @@ using HotelReservations.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,8 +36,12 @@ namespace HotelReservation
         {
             string choice;
 
+            Console.WriteLine("----------------------");
+            Console.WriteLine("!     Добре дошли    !");
+            Console.WriteLine("----------------------");
             //Круд операции
             //Клиенти
+            Console.WriteLine(" ");
             Console.WriteLine("Клиенти:");
             Console.WriteLine("1. Добави клиент");
             Console.WriteLine("2. Изведи клиент по ID");
@@ -44,25 +49,32 @@ namespace HotelReservation
             Console.WriteLine("4. Update на клиент");
             Console.WriteLine("5. Изтрий клиент");
             //Хотели
+            Console.WriteLine(" ");
             Console.WriteLine("Хотели:");
             Console.WriteLine("6. Добави хотел");
             Console.WriteLine("7. Ъпдейт на хотели");
             Console.WriteLine("8. Изтрий хотел");
             //Резервации
+            Console.WriteLine(" ");
             Console.WriteLine("Резервации:");
             Console.WriteLine("9. Направи резервация");
             Console.WriteLine("10. Изведи информация за всички резервации");
             Console.WriteLine("11. Ъпдейт на резервация");
             Console.WriteLine("12. Откажи резервация");
             //Стаи
+            Console.WriteLine(" ");
             Console.WriteLine("Стаи:");
             Console.WriteLine("13. Добави стая");
             Console.WriteLine("14. Update на стая");
             Console.WriteLine("15. Изтрий стая");
             //Услуги
+            Console.WriteLine(" ");
+            Console.WriteLine("Услуги:");
             Console.WriteLine("16. Добави услуга");
 
             //Общи заявки
+            Console.WriteLine(" ");
+            Console.WriteLine("-------------------");
             Console.WriteLine("17. Хотели по град");
             Console.WriteLine("18. Стаи под цена");
             Console.WriteLine("19. Клиенти с повече от 1 резервация");
@@ -94,7 +106,15 @@ namespace HotelReservation
                         Console.WriteLine("Ваведи телефонен номер");
                         string phoneAdd = Console.ReadLine();
 
-                        clientController.AddClient(nameAdd, emailAdd, phoneAdd);
+                        var addClient = clientController.AddClient(nameAdd, emailAdd, phoneAdd);
+                        if (addClient == true)
+                        {
+                            Console.WriteLine("Успешно добавихте нов клиент!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Добавянето не е успешно!");
+                        }
                         break;
 
                     case "2":
@@ -122,13 +142,30 @@ namespace HotelReservation
                         string emailClient = Console.ReadLine();
                         Console.WriteLine("Ваведете телефонен номер:");
                         string phoneClient = Console.ReadLine();
-                        clientController.UpdateClient(idClientUpdate, nameClient, emailClient, phoneClient);
+
+                        var clientUpdate = clientController.UpdateClient(idClientUpdate, nameClient, emailClient, phoneClient);
+                        if (clientUpdate == true)
+                        {
+                            Console.WriteLine("Успешно е ъпдейтване!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ъпдейта не е успешен!");
+                        }
                         break;
 
                     case "5":
                         Console.WriteLine("Ваведи Ад на клиента, който искаш да изтриеш:");
                         int idClientDelete = int.Parse(Console.ReadLine());
-                        clientController.DeleteClient(idClientDelete);
+                        var clientDelite = clientController.DeleteClient(idClientDelete);
+                        if (clientDelite == true)
+                        {
+                            Console.WriteLine("Успешно изтрихте клиент!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Изтриването не е успешно!");
+                        }
                         break;
 
                     case "6":
@@ -140,7 +177,15 @@ namespace HotelReservation
                         Console.WriteLine("Ваведи град");
                         string cityHotel = Console.ReadLine();
 
-                        hotelController.AddHotel(nameHotelAdd, addressHotel, cityHotel);
+                        var hotelAdd = hotelController.AddHotel(nameHotelAdd, addressHotel, cityHotel);
+                        if (hotelAdd == true)
+                        {
+                            Console.WriteLine("Успешно добавихте нов хотел!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Добавянето на нов хотел е неуспешно!");
+                        }
                         break;
 
                     case "7":
@@ -150,17 +195,33 @@ namespace HotelReservation
                         int idHotelUpdate = int.Parse(Console.ReadLine());
                         Console.WriteLine("Ваведете име:");
                         string nameHotel = Console.ReadLine();
-                        Console.WriteLine("Ваведете имеил:");
+                        Console.WriteLine("Ваведете адрес:");
                         string addressHotel1 = Console.ReadLine();
-                        Console.WriteLine("Ваведете телефонен номер:");
+                        Console.WriteLine("Ваведете град:");
                         string cityHotel1 = Console.ReadLine();
-                        hotelController.UpdateHotel(idHotelUpdate, nameHotel, addressHotel1, cityHotel1);
+                        var hotelUpdate = hotelController.UpdateHotel(idHotelUpdate, nameHotel, addressHotel1, cityHotel1);
+                        if (hotelUpdate == true)
+                        {
+                            Console.WriteLine("Ъпдейта е успешен!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ъпдейта е неуспешен!");
+                        }
                         break;
 
                     case "8":
                         Console.WriteLine("Ваведи Ад на хотела, който искаш да изтриеш:");
                         int idHotelDelete = int.Parse(Console.ReadLine());
-                        hotelController.DeleteHotel(idHotelDelete);
+                        var hotelDelite = hotelController.DeleteHotel(idHotelDelete);
+                        if (hotelDelite == true)
+                        {
+                            Console.WriteLine("Хотелът е изтрит!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Хотелът не е успешно изтрит!");
+                        }
                         break;
 
                     case "9":
@@ -174,7 +235,15 @@ namespace HotelReservation
                         Console.WriteLine("Ваведете крайна дата на резервацията");
                         DateTime checkOut = DateTime.Parse(Console.ReadLine());
 
-                        reservationController.MakeReservation(clientId, roomId, checkIn, checkOut);
+                        var makereservation = reservationController.MakeReservation(clientId, roomId, checkIn, checkOut);
+                        if (makereservation == true)
+                        {
+                            Console.WriteLine("Резервацията е успешно направена");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Резервацията не е направена!");
+                        }
                         break;
 
                     case "10":
@@ -186,17 +255,33 @@ namespace HotelReservation
                         //int id, DateTime newCheckIn, DateTime newCheckOut
                         Console.WriteLine("Ваведи Ад на хотела, който искаш да изтриеш:");
                         int idreservation = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Ваведи Ад на хотела, който искаш да изтриеш:");
+                        Console.WriteLine("Ваведете начална дата на резервацията");
                         DateTime newCheckIn = DateTime.Parse(Console.ReadLine());
-                        Console.WriteLine("Ваведи Ад на хотела, който искаш да изтриеш:");
+                        Console.WriteLine("Ваведете крайна дата на резервацията");
                         DateTime newCheckOut = DateTime.Parse(Console.ReadLine());
-                        reservationController.UpdateReservation(idreservation, newCheckIn, newCheckOut);
+                        var reservationUpdate = reservationController.UpdateReservation(idreservation, newCheckIn, newCheckOut);
+                        if (reservationUpdate == true)
+                        {
+                            Console.WriteLine("Ъпдейта е успешен!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ъпдейта е неуспешен!");
+                        }
                         break;
 
                     case "12":
                         Console.WriteLine("Ваведи Ад на хотела, който искаш да изтриеш:");
                         int idReservationCancel = int.Parse(Console.ReadLine());
-                        reservationController.CancelReservation(idReservationCancel);
+                        var reservationCancel = reservationController.CancelReservation(idReservationCancel);
+                        if (reservationCancel == true)
+                        {
+                            Console.WriteLine("Резервацията е успешно отказана!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Резервацията не е успешно отказана!");
+                        }
                         break;
 
                     case "13":
@@ -210,7 +295,15 @@ namespace HotelReservation
                         Console.WriteLine("Ваведи цена на стаята");
                         decimal price = decimal.Parse(Console.ReadLine());
 
-                        roomController.AddRoom(hotelId, roomNumber, capacity, price);
+                        var roomAdd = roomController.AddRoom(hotelId, roomNumber, capacity, price);
+                        if (roomAdd == true)
+                        {
+                            Console.WriteLine("Успешно добавихте нова стая!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Добавянето на стая е неуспешно!");
+                        }
                         break;
 
                     case "14":
@@ -223,23 +316,47 @@ namespace HotelReservation
                         int capasityUpdate = int.Parse(Console.ReadLine());
                         Console.WriteLine("Ваведете цена на стаята");
                         decimal priceUpdate = decimal.Parse(Console.ReadLine());
-                        roomController.UpdateRoom(roomIdUpdate, roomNumberUpdate, capasityUpdate, priceUpdate);
+                        var roomUpdate12 = roomController.UpdateRoom(roomIdUpdate, roomNumberUpdate, capasityUpdate, priceUpdate);
+                        if (roomUpdate12 == true)
+                        {
+                            Console.WriteLine("Ъпдейта е успешен!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ъпдейта е неуспешен!");
+                        }
                         break;
 
                     case "15":
-                        Console.WriteLine();
+                        Console.WriteLine("Ваведете ид на стаята която искате да изтриете:");
                         int idDelite = int.Parse(Console.ReadLine());
-                        roomController.DeleteRoom(idDelite);
+                        var roomDelite = roomController.DeleteRoom(idDelite);
+                        if (roomDelite == true)
+                        {
+                            Console.WriteLine("Успешно изтрихте стая!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Изтриването не е успешно!");
+                        }
                         break;
 
                     case "16":
                         //string name, decimal price
-                        Console.WriteLine("");
+                        Console.WriteLine("Ваведе име на новата услуга:");
                         string nameService = Console.ReadLine();
-                        Console.WriteLine(" ");
+                        Console.WriteLine("Ваведете цена на услугата:");
                         decimal priceService = decimal.Parse(Console.ReadLine());
 
-                        serviceController.AddService(nameService, priceService);
+                        var serviseAdd = serviceController.AddService(nameService, priceService);
+                        if (serviseAdd == true)
+                        {
+                            Console.WriteLine("Успешно добавихте нова услуга!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Добавянето на услуга е неуспешно!");
+                        }
                         break;
 
                     case "17":

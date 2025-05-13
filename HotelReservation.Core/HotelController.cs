@@ -12,11 +12,11 @@ namespace HotelReservation.Core
             _context = context;
         }
 
-        public void AddHotel(string name, string address, string city)
+        public bool AddHotel(string name, string address, string city)
         {
             var hotel = new Hotel {Name = name, Address = address, City = city };
             _context.Hotels.Add(hotel);
-            _context.SaveChanges();
+            return _context.SaveChanges() == 1;
         }
         public bool UpdateHotel(int id, string name, string address, string city)
         {
@@ -27,8 +27,7 @@ namespace HotelReservation.Core
             hotel.Address = address;
             hotel.City = city;
 
-            _context.SaveChanges();
-            return true;
+            return _context.SaveChanges() == 1;
         }
 
         public bool DeleteHotel(int id)
@@ -37,8 +36,7 @@ namespace HotelReservation.Core
             if (hotel == null) return false;
 
             _context.Hotels.Remove(hotel);
-            _context.SaveChanges();
-            return true;
+            return _context.SaveChanges() == 1;
         }
     }
 }

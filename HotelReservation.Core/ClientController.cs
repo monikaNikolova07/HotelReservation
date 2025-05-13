@@ -17,11 +17,11 @@ namespace HotelReservation.Core
             _context = context;
         }
 
-        public void AddClient(string name, string email, string phone)
+        public bool AddClient(string name, string email, string phone)
         {
             var client = new Client { Name = name, Email = email, PhoneNumber = phone };
             _context.Clients.Add(client);
-            _context.SaveChanges();
+            return _context.SaveChanges() == 1;
         }
 
         public Client GetClientById(int id)

@@ -17,11 +17,11 @@ namespace HotelReservation.Core
             _context = context;
         }
 
-        public void AddService(string name, decimal price)
+        public bool AddService(string name, decimal price)
         {
             var serviceAdd = new Service { Name = name, Price = price };
             _context.Services.Add(serviceAdd);
-            _context.SaveChanges();
+            return _context.SaveChanges() == 1;
         }
     }
 }
