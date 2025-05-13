@@ -27,7 +27,7 @@ namespace HotelReservation.Core
         // Заявка 2: Стаи над определена цена
         public IEnumerable<Room> GetRoomsAbovePrice(decimal price)
         {
-            return _context.Rooms.Where(r => r.PricePerNight > price).ToList();
+            return _context.Rooms.Where(r => r.PricePerNight < price).ToList();
         }
 
         // Заявка 3: Клиенти с повече от 1 резервация (връзка Client - Reservation)

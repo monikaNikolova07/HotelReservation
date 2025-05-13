@@ -12,9 +12,9 @@ namespace HotelReservation.Core
     {
         private readonly HotelReservationDBContext _context = new HotelReservationDBContext();
 
-        public RoomController()
+        public RoomController(HotelReservationDBContext context)
         {
-
+            _context = context;
         }
 
         public void AddRoom(int hotelId, string roomNumber, int capacity, decimal price)
@@ -30,9 +30,36 @@ namespace HotelReservation.Core
             _context.SaveChanges();
         }
 
-        public IEnumerable<Room> GetRoomsByHotel(int hotelId)
+        public void UpdateRoom(int roomId, string roomNumber, int capacity, decimal price)
         {
-            return _context.Rooms.Where(r => r.HotelId == hotelId).ToList();
+            var room = _context.Rooms.FirstOrDefault(r => r.Id == roomId);
+            if (room != null)
+            {
+                room.RoomNumber = roomNumber;
+                room.Capacity = capacity;
+                room.PricePerNight = price;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("Стаята не е намерена");
+            }
         }
+
+        public void DeleteRoom(int roomId)
+        {
+            var room = _context.Rooms.FirstOrDefault(r => r.Id == roomId);
+            if (room != null)
+            {
+                _context.Rooms.Remove(room);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("Стаята не е намерена");
+            }
+        }
+
     }
 }

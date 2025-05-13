@@ -9,9 +9,9 @@ namespace HotelReservation.Core
         
         private readonly HotelReservationDBContext _context = new HotelReservationDBContext();
 
-        public ReservationController()
+        public ReservationController(HotelReservationDBContext context)
         {
-
+            _context = context;
         }
 
         public void MakeReservation(int clientId, int roomId, DateTime checkIn, DateTime checkOut)
@@ -35,17 +35,36 @@ namespace HotelReservation.Core
             _context.SaveChanges();
         }
 
-        
-
-        /*
-        public IEnumerable<Reservation> GetClientReservations(int clientId)
+        public List<Reservation> GetAllReservations()
         {
-            return _context.Reservations
-                .Include(r => r.Room)
-                .ThenInclude(r => r.Hotel)
-                .Where(r => r.ClientId == clientId)
-                .ToList();
+            return _context.Reservations.ToList();
         }
-        */
+
+        public bool UpdateReservation(int id, DateTime newCheckIn, DateTime newCheckOut)
+        {
+            var reservation = _context.Reservations.FirstOrDefault(r => r.Id == id);
+            if (reservation == null) return false;
+
+            var room = _context.Rooms.Find(reservation.RoomId);
+            if (room == null) return false;
+
+            var totalNights = (newCheckOut - newCheckIn).Days;
+            reservation.CheckInDate = newCheckIn;
+            reservation.CheckOutDate = newCheckOut;
+            reservation.TotalPrice = room.PricePerNight * totalNights;
+
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool CancelReservation(int id)
+        {
+            var reservation = _context.Reservations.FirstOrDefault(r => r.Id == id);
+            if (reservation == null) return false;
+
+            _context.Reservations.Remove(reservation);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }
