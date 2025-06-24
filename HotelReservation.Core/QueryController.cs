@@ -39,7 +39,8 @@ namespace HotelReservation.Core
         }
 
         // Заявка 4: Стаи в конкретен хотел (с вход и 2 таблици: Room, Hotel)
-        public IEnumerable<Room> GetRoomsByHotelName(string hotelName)
+        //ТАЗИ
+        public List<Room> GetRoomsByHotelName(string hotelName)
         {
             return _context.Rooms
                 .Where(r => r.Hotel.Name == hotelName)
@@ -48,7 +49,9 @@ namespace HotelReservation.Core
         }
 
         // Заявка 5: Резервации за даден клиент (с вход, връзка Reservation - Client - Room)
-        public IEnumerable<Reservation> GetReservationsForClient(string clientName)
+
+        //ТАЗИ
+        public List<Reservation> GetReservationsForClient(string clientName)
         {
             return _context.Reservations
                 .Include(r => r.Client)
@@ -87,7 +90,8 @@ namespace HotelReservation.Core
         }
 
         // Заявка 10: Клиенти, които са резервирали в определен период (с вход и 3 таблици)
-        public IEnumerable<Client> GetClientsByDateRange(DateTime startDate, DateTime endDate)
+        //ТАЗИ
+        public List<Client> GetClientsByDateRange(DateTime startDate, DateTime endDate)
         {
             return _context.Reservations
                 .Include(r => r.Client)

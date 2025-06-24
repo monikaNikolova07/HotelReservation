@@ -24,7 +24,7 @@ namespace Form1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 reservationForm = new Form2();
+            Form3 reservationForm = new Form3();
             reservationForm.Show();
             this.Hide();
         }
@@ -38,7 +38,7 @@ namespace Form1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form2 reservationForm = new Form2();
+            Form4 reservationForm = new Form4();
             reservationForm.Show();
             this.Hide();
         }

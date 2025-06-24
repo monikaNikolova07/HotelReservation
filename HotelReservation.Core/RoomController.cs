@@ -60,6 +60,5 @@ namespace HotelReservation.Core
                 throw new ArgumentException("Стаята не е намерена");
             }
         }
-
     }
 }

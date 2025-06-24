@@ -17,7 +17,7 @@ namespace HotelReservation.Core
         public bool MakeReservation(int clientId, int roomId, DateTime checkIn, DateTime checkOut)
         {
             var room = _context.Rooms.Find(roomId);
-            if (room == null) ;
+            if (room == null);
 
             var totalNights = (checkOut - checkIn).Days;
             var totalPrice = room.PricePerNight * totalNights;
